@@ -1,0 +1,129 @@
+:root {
+  --clr-dark: #000c34;
+  --clr-light: #ffffff;
+  --clr-gray: #e1e1e1;
+  --clr-place: #cccccc;
+  --clr-text: #333;
+  --clr-prim-dark: #0027a7;
+  --clr-prim: #547cff;
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.main-con {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--clr-gray);
+}
+
+.header {
+  width: 100%;
+  background-color: var(--clr-dark);
+  text-align: center;
+  padding: 1rem;
+
+  .logo {
+    width: 180px;
+    margin-bottom: 1rem;
+  }
+
+  .header-title {
+    color: var(--clr-gray);
+  }
+}
+
+.select-hymn-con {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  background-color: var(--clr-prim);
+  padding: 1rem;
+}
+
+.search-input,
+.select {
+  background-color: var(--clr-dark);
+  border: none;
+  border-radius: 6px;
+  padding: 1rem;
+  color: var(--clr-gray);
+  outline: none;
+}
+
+// .select {
+//   // appearance: none;
+// }
+
+.select-wrapper {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '\25bc';
+    display: grid;
+    place-content: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 25px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border-radius: 6px;
+    background-color: var(--clr-dark);
+    color: var(--clr-light);
+    pointer-events: none;
+  }
+}
+
+.search-con {
+  display: flex;
+  gap: 1rem;
+
+  .icon-box {
+    display: grid;
+    place-content: center;
+    padding: 0 1rem;
+    border-radius: 6px;
+    background-color: var(--clr-dark);
+    cursor: pointer;
+
+    .icon {
+      pointer-events: none;
+    }
+  }
+
+  .search-input {
+    outline: none;
+    &::placeholder {
+      color: var(--clr-place);
+    }
+  }
+}
+
+.hymn-display-con {
+  background-color: var(--clr-gray);
+  padding: 2rem 1rem;
+  display: grid;
+  // grid-auto-columns: 1fr;
+  place-items: center;
+
+  .hymn-title {
+    color: var(--clr-dark);
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .hymn-text {
+    // padding: 1rem;
+    font-size: 1rem;
+    color: var(--clr-text);
+    font-family: cursive;
+  }
+}
