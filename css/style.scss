@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap');
+
 :root {
   --clr-dark: #000c34;
   --clr-light: #ffffff;
@@ -11,6 +13,10 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
 }
 
 .main-con {
@@ -117,12 +123,14 @@
   .hymn-title {
     color: var(--clr-dark);
     margin-bottom: 1rem;
+    font-weight: 600;
     text-align: center;
   }
 
   .hymn-text {
     // padding: 1rem;
     font-size: 1rem;
+    font-weight: 400;
     color: var(--clr-text);
   }
 }
