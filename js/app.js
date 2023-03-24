@@ -2,19 +2,26 @@
 const searchButton = document.querySelector('.search-btn');
 searchButton.addEventListener('click', function () {
   if (errorCheck()) {
-    queryHymn();
+    searchToQueryHymn();
   }
 });
 
-/////////////////SELECT OPTIONS //////////////////
-for (var i = 0; i < select.options.length; i++) {
-  const select = document.getElementById('select');
-  let options = select.options[i];
+////////////////SELECT OPTIONS //////////////////
 
-  options.addEventListener('click', function () {
-    console.log(options.value);
+const selectBox = document.querySelector('.select-box');
+const optionCon = document.querySelector('.option-con');
+const allOptionEl = document.querySelectorAll('.option');
+
+selectBox.addEventListener('click', () => {
+  optionCon.classList.toggle('selected');
+});
+
+allOptionEl.forEach((option) => {
+  option.addEventListener('click', () => {
+    selectBox.innerHTML = option.querySelector('label').innerHTML;
+    optionCon.classList.remove('selected');
   });
-}
+});
 
 /////////////////ERROR CHECK FUNCTION //////////////////
 
@@ -32,20 +39,13 @@ function errorCheck() {
   return true;
 }
 
-///////////////// FETCHING DATA FROM ECOY API ENDPOINT //////////////////
-function queryHymn(e) {
+///////////////// FETCHING DATA FROM ECOY API ENDPOINT BY SEARCH //////////////////
+function searchToQueryHymn() {
   let searchEl = document.querySelector('.search-input').value;
 
   fetch(`https://ecoy-hymn-api.onrender.com/ecoyhymn/${searchEl}`)
     .then((response) => response.json())
     .then((data) => {
-      // const hymnDisplay = document.querySelector('.hymn-display-con');
-      // hymnDisplay.innerHTML = `
-      // <h3 class="hymn-title">"${data.title}"</h3>
-      // <p class="hymn-text">
-      //  "${data.hymn_body}"
-      // </p>
-      // `;
       const hymnDisplay = document.querySelector('.hymn-display-con');
       hymnDisplay.innerHTML = ''; // Clear existing content
       const renderedHymnCon = document.createElement('div');
@@ -60,6 +60,36 @@ function queryHymn(e) {
       renderedHymnCon.appendChild(hymnBody);
       hymnDisplay.appendChild(renderedHymnCon);
     });
-
-  e.preventDefault();
 }
+
+///////////////// FETCHING DATA FROM ECOY API ENDPOINT BY SELECTION //////////////////
+function fetchIdBySelect() {
+  const labels = document.querySelectorAll('.option label');
+  let input;
+  labels.forEach((label) => {
+    label.addEventListener('click', () => {
+      const inputId = label.getAttribute('for');
+      input = document.getElementById(inputId);
+      let inputValue = input.id;
+
+      fetch(`https://ecoy-hymn-api.onrender.com/ecoyhymn/${inputValue}`)
+        .then((response) => response.json())
+        .then((data) => {
+          const hymnDisplay = document.querySelector('.hymn-display-con');
+          hymnDisplay.innerHTML = ''; // Clear existing content
+          const renderedHymnCon = document.createElement('div');
+          const title = document.createElement('h3');
+          title.innerText = `${data.title}`;
+          title.classList.add('hymn-title');
+          const hymnBody = document.createElement('p');
+          hymnBody.innerText = `${data.hymn_body}`;
+          hymnBody.classList.add('hymn-text');
+
+          renderedHymnCon.appendChild(title);
+          renderedHymnCon.appendChild(hymnBody);
+          hymnDisplay.appendChild(renderedHymnCon);
+        });
+    });
+  });
+}
+fetchIdBySelect();
