@@ -1,5 +1,5 @@
 /////////////////SEARCH BUTTON //////////////////
-const searchButton = document.querySelector('.search-btn');
+const searchButton = document.querySelector('.num-search-btn');
 searchButton.addEventListener('click', function () {
   if (errorCheck()) {
     searchToQueryHymn();
@@ -14,6 +14,15 @@ const allOptionEl = document.querySelectorAll('.option');
 
 selectBox.addEventListener('click', () => {
   optionCon.classList.toggle('selected');
+
+  if (optionCon.classList.contains('selected')) {
+    filterInput.focus();
+    filterInput.value = '';
+
+    labels.forEach(function (label) {
+      label.parentElement.style.display = 'block';
+    });
+  }
 });
 
 allOptionEl.forEach((option) => {
@@ -23,10 +32,28 @@ allOptionEl.forEach((option) => {
   });
 });
 
+////////////////// SEARCH FILTER SCRIPT /////////////////
+const filterInput = document.querySelector('.txt-search-element');
+const labels = document.querySelectorAll('.option label');
+
+filterInput.addEventListener('keyup', function () {
+  let filterText = filterInput.value.toLowerCase();
+
+  labels.forEach(function (label) {
+    const labelText = label.textContent.toLowerCase();
+
+    if (labelText.includes(filterText)) {
+      label.parentElement.style.display = 'block';
+    } else {
+      label.parentElement.style.display = 'none';
+    }
+  });
+});
+
 /////////////////ERROR CHECK FUNCTION //////////////////
 
 function errorCheck() {
-  let searchEl = document.querySelector('.search-input').value;
+  let searchEl = document.querySelector('.num-search-input').value;
 
   if (searchEl.trim() === '') {
     alert('Field cannot be empty');
@@ -41,7 +68,7 @@ function errorCheck() {
 
 ///////////////// FETCHING DATA FROM ECOY API ENDPOINT BY SEARCH //////////////////
 function searchToQueryHymn() {
-  let searchEl = document.querySelector('.search-input').value;
+  let searchEl = document.querySelector('.num-search-input').value;
 
   fetch(`https://ecoy-hymn-api.onrender.com/ecoyhymn/${searchEl}`)
     .then((response) => response.json())

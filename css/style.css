@@ -55,18 +55,15 @@ body {
   padding: 1rem;
 }
 
-.search-input {
+.num-search-input {
   background-color: var(--clr-dark);
   border: none;
   border-radius: 6px;
   padding: 1rem 1.5rem;
-  color: var(--clr-gray);
-  outline: none;
-}
-
-.search-input {
   box-shadow: var(--box-shadow);
   font-size: 1rem;
+  color: var(--clr-gray);
+  outline: none;
 }
 
 .select-con {
@@ -89,6 +86,7 @@ body {
   order: 0;
   background-color: var(--clr-dark);
   box-shadow: var(--box-shadow);
+  cursor: pointer;
 }
 .select-con .select-box::after {
   content: "▼";
@@ -112,7 +110,7 @@ body {
   background-color: var(--clr-dark);
   max-height: 0;
   overflow-y: scroll;
-  border-radius: 6px;
+  border-radius: 0 0 6px 6px;
   transition: all 0.5s ease;
   opacity: 0;
   order: 1;
@@ -127,15 +125,17 @@ body {
   border-radius: 0 6px 6px 0;
 }
 .option-con .option {
-  padding: 1rem 1.5rem;
+  padding: 1rem 0;
   color: var(--clr-place);
+  cursor: pointer;
 }
 .option-con .option:hover, .option-con .option:focus {
   background-color: var(--clr-prim-dark);
 }
-.option-con .label {
-  width: 400px;
-  padding-left: 1rem 5rem;
+.option-con label {
+  display: block;
+  padding: 0.5rem 1.5rem;
+  cursor: pointer;
 }
 .option-con .input-element {
   display: none;
@@ -151,13 +151,13 @@ body {
   transform: rotateX(180deg);
 }
 
-.search-con {
+.num-search-con {
   width: 100%;
   max-width: 500px;
   min-width: 200px;
   position: relative;
 }
-.search-con .icon-box {
+.num-search-con .icon-box {
   display: grid;
   place-content: center;
   position: absolute;
@@ -170,23 +170,54 @@ body {
   background-color: var(--clr-prim-dark);
   cursor: pointer;
 }
-.search-con .icon-box .icon {
+.num-search-con .icon-box .icon {
   pointer-events: none;
 }
-.search-con .search-input {
+.num-search-con .num-search-input {
   outline: none;
   width: 100%;
 }
-.search-con .search-input::-moz-placeholder {
+.num-search-con .num-search-input::-moz-placeholder {
   color: var(--clr-place);
 }
-.search-con .search-input::placeholder {
+.num-search-con .num-search-input::placeholder {
   color: var(--clr-place);
+}
+
+.option-con.selected ~ .txt-search-con {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.txt-search-con {
+  width: 100%;
+  min-width: 200px;
+  max-width: 500px;
+  border-radius: 6px 6px 0 0;
+  background-color: var(--clr-prim-dark);
+  border: 8px solid var(--clr-prim-dark);
+  opacity: 0;
+  transition: all 0.5s ease;
+  position: relative;
+  z-index: 10;
+}
+.txt-search-con .txt-search-element {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  outline: none;
+  font-size: 1rem;
+  font-weight: 600;
+  opacity: 1;
+  color: var(--clr-prim-dark);
+  border-radius: 6px;
+  border: none;
+  background-color: var(--clr-gray);
+  text-decoration: none;
 }
 
 .hymn-display-con {
   background-color: var(--clr-gray);
-  padding: 2rem 1rem 4rem;
+  padding: 0 1rem 4rem;
   display: grid;
   place-items: center;
 }

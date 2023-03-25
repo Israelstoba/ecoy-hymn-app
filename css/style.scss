@@ -57,19 +57,15 @@ body {
   padding: 1rem;
 }
 
-.search-input {
+.num-search-input {
   background-color: var(--clr-dark);
   border: none;
   border-radius: 6px;
   padding: 1rem 1.5rem;
-
-  color: var(--clr-gray);
-  outline: none;
-}
-
-.search-input {
   box-shadow: var(--box-shadow);
   font-size: 1rem;
+  color: var(--clr-gray);
+  outline: none;
 }
 
 .select-con {
@@ -92,6 +88,7 @@ body {
     order: 0;
     background-color: var(--clr-dark);
     box-shadow: var(--box-shadow);
+    cursor: pointer;
 
     &::after {
       content: '\25bc';
@@ -118,7 +115,7 @@ body {
   background-color: var(--clr-dark);
   max-height: 0;
   overflow-y: scroll;
-  border-radius: 6px;
+  border-radius: 0 0 6px 6px;
   transition: all 0.5s ease;
   opacity: 0;
   order: 1;
@@ -134,17 +131,19 @@ body {
   }
 
   .option {
-    padding: 1rem 1.5rem;
+    padding: 1rem 0;
     color: var(--clr-place);
+    cursor: pointer;
 
     &:hover,
     &:focus {
       background-color: var(--clr-prim-dark);
     }
   }
-  .label {
-    width: 400px;
-    padding-left: 1rem 5rem;
+  label {
+    display: block;
+    padding: 0.5rem 1.5rem;
+    cursor: pointer;
   }
 
   .input-element {
@@ -161,7 +160,7 @@ body {
   transform: rotateX(180deg);
 }
 
-.search-con {
+.num-search-con {
   width: 100%;
   max-width: 500px;
   min-width: 200px;
@@ -185,7 +184,7 @@ body {
     }
   }
 
-  .search-input {
+  .num-search-input {
     outline: none;
     width: 100%;
     &::placeholder {
@@ -194,9 +193,41 @@ body {
   }
 }
 
+.option-con.selected ~ .txt-search-con {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.txt-search-con {
+  width: 100%;
+  min-width: 200px;
+  max-width: 500px;
+  border-radius: 6px 6px 0 0;
+  background-color: var(--clr-prim-dark);
+  border: 8px solid var(--clr-prim-dark);
+  opacity: 0;
+  transition: all 0.5s ease;
+  position: relative;
+  z-index: 10;
+
+  .txt-search-element {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    outline: none;
+    font-size: 1rem;
+    font-weight: 600;
+    opacity: 1;
+    color: var(--clr-prim-dark);
+    border-radius: 6px;
+    border: none;
+    background-color: var(--clr-gray);
+    text-decoration: none;
+  }
+}
+
 .hymn-display-con {
   background-color: var(--clr-gray);
-  padding: 2rem 1rem 4rem;
+  padding: 0 1rem 4rem;
   display: grid;
   place-items: center;
 
