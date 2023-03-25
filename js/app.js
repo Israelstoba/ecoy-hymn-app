@@ -16,7 +16,6 @@ selectBox.addEventListener('click', () => {
   optionCon.classList.toggle('selected');
 
   if (optionCon.classList.contains('selected')) {
-    filterInput.focus();
     filterInput.value = '';
 
     labels.forEach(function (label) {
