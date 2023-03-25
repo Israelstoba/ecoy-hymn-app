@@ -43,11 +43,11 @@ body {
   padding: 1rem;
 }
 .header .logo {
-  width: 150px;
-  margin-bottom: 1rem;
+  width: 80px;
 }
 .header .header-title {
   color: var(--clr-gray);
+  font-weight: 600;
 }
 
 .select-hymn-con {
