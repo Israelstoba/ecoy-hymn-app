@@ -72,8 +72,11 @@ function searchToQueryHymn() {
   fetch(`https://ecoy-hymn-api.onrender.com/ecoyhymn/${searchEl}`)
     .then((response) => response.json())
     .then((data) => {
+      const renderedTitleCon = document.querySelector('.rendered-title');
+      const mainContainer = document.querySelector('.main-con');
       const hymnDisplay = document.querySelector('.hymn-display-con');
       hymnDisplay.innerHTML = ''; // Clear existing content
+      renderedTitleCon.innerHTML = ''; // Clear existing title
       const renderedHymnCon = document.createElement('div');
       const title = document.createElement('h3');
       title.innerText = `${data.title}`;
@@ -82,9 +85,10 @@ function searchToQueryHymn() {
       hymnBody.innerText = `${data.hymn_body}`;
       hymnBody.classList.add('hymn-text');
 
-      renderedHymnCon.appendChild(title);
+      renderedTitleCon.appendChild(title);
       renderedHymnCon.appendChild(hymnBody);
       hymnDisplay.appendChild(renderedHymnCon);
+      mainContainer.appendChild(hymnDisplay);
     });
 }
 
@@ -101,8 +105,11 @@ function fetchIdBySelect() {
       fetch(`https://ecoy-hymn-api.onrender.com/ecoyhymn/${inputValue}`)
         .then((response) => response.json())
         .then((data) => {
+          const renderedTitleCon = document.querySelector('.rendered-title');
+          const mainContainer = document.querySelector('.main-con');
           const hymnDisplay = document.querySelector('.hymn-display-con');
-          hymnDisplay.innerHTML = ''; // Clear existing content
+          hymnDisplay.innerHTML = ''; // Clear existing hymn body
+          renderedTitleCon.innerHTML = ''; // Clear existing title
           const renderedHymnCon = document.createElement('div');
           const title = document.createElement('h3');
           title.innerText = `${data.title}`;
@@ -111,9 +118,10 @@ function fetchIdBySelect() {
           hymnBody.innerText = `${data.hymn_body}`;
           hymnBody.classList.add('hymn-text');
 
-          renderedHymnCon.appendChild(title);
+          renderedTitleCon.appendChild(title);
           renderedHymnCon.appendChild(hymnBody);
           hymnDisplay.appendChild(renderedHymnCon);
+          mainContainer.appendChild(hymnDisplay);
         });
     });
   });
