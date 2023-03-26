@@ -226,7 +226,7 @@ body {
 
 .rendered-title {
   text-align: center;
-  padding: 0.25rem 0;
+  padding: 0.25rem 1rem;
   position: relative;
   box-shadow: var(--box-shadow);
 }
@@ -250,7 +250,7 @@ body {
   font-weight: 400;
   color: var(--clr-text);
   width: 100%;
-  margin-bottom: 3rem;
+  margin: 1rem 0 5rem;
   display: flex;
   justify-content: center;
 }

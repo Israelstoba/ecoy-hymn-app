@@ -69,7 +69,9 @@ function errorCheck() {
 function searchToQueryHymn() {
   let searchEl = document.querySelector('.num-search-input').value;
 
-  fetch(`https://ecoy-hymn-api.onrender.com/ecoyhymn/${searchEl}`)
+  const apiEndpoint = 'https://ecoy-hymn-api.onrender.com/ecoyhymn/';
+
+  fetch(`${apiEndpoint}/${searchEl}`)
     .then((response) => response.json())
     .then((data) => {
       const renderedTitleCon = document.querySelector('.rendered-title');
@@ -102,7 +104,9 @@ function fetchIdBySelect() {
       input = document.getElementById(inputId);
       let inputValue = input.id;
 
-      fetch(`https://ecoy-hymn-api.onrender.com/ecoyhymn/${inputValue}`)
+      const apiEndpoint = 'https://ecoy-hymn-api.onrender.com/ecoyhymn/';
+
+      fetch(`${apiEndpoint}/${inputValue}`)
         .then((response) => response.json())
         .then((data) => {
           const renderedTitleCon = document.querySelector('.rendered-title');
